@@ -63,15 +63,13 @@ class CompositionController extends Controller
 
         $mergedFileName = 'output-'. date('m-d-Y_His') . '.wav';
 
-        // try {
+        try {
             $ffmpeg = FFMpeg::fromDisk('local')
             ->open([$sunAudio, $moonAudio, $risingAudio])
             ->export()
             ->concatWithoutTranscoding()
             ->save('public/composition/' . $mergedFileName);
         
-            // $savedFilePath = storage_path('app/composition/'. $mergedFileName);
-            
             $composition = new Composition();
 
             $composition->zoodiac_sign_sun = $request->zoodiac_sign_sun;
@@ -81,9 +79,9 @@ class CompositionController extends Controller
             $composition->user_id = auth()->user()->id;
             $composition->save(); 
 
-        // } catch (\Throwable $th) {
-        //     return redirect()->back()->withErrors(['msg' => 'Something went Wrong!']);
-        // }
+        } catch (\Throwable $th) {
+            return redirect()->back()->withErrors(['msg' => 'Something went Wrong!']);
+        }
 
         return redirect()->back()->with('success', 'Composition saved successfully!');  
     
