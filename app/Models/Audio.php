@@ -21,7 +21,7 @@ class Audio extends Model
         
     public $zoodiacSigns = ['Aries', 'Tauraus', 'Gemini', 'Cancer', 'Virgo', 'Scorpio'];
     
-    public $classes = ['Rising', 'Sun', 'Moon'];
+    public $classes = ['Sun', 'Moon', 'Rising'];
 
     public function upload(){
         return $this->belongsTo(Upload::class, 'upload_id');

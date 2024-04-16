@@ -10,24 +10,24 @@
                 </div>
             @endif
 
-            <h1><a href="{{ route('audio.create') }}" class="btn btn-secondary"><strong>Add Audio</strong></a></h1>
+            <h1><a href="{{ route('composition.create') }}" class="btn btn-secondary"><strong>Add Composition</strong></a></h1>
 
             <table class="table table-bordered">
                 <th> S.No. </th>
-                <th> Zoodiac Sign </th>
-                <th> Category </th>
-                <th> File Name </th>
+                <th> Zoodiac Sign Sun</th>
+                <th> Zoodiac Sign Moon</th>
+                <th> Zoodiac Sign Rising</th>
                 <th> Audio </th>
                 @forelse($data as $key => $audio)
                 <tbody>
                     <td>{{ $key+1 }}</td>
-                    <td>{{ $audio->zoodiac_sign }}</td>
-                    <td>{{ $audio->category }}</td>
-                    <td>{{ $audio->upload->file_name }}</td>
+                    <td>{{ $audio->zoodiac_sign_sun }}</td>
+                    <td>{{ $audio->zoodiac_sign_moon }}</td>
+                    <td>{{ $audio->zoodiac_sign_rising }}</td>
                     <td>
                         <audio controls>
-                            <source src="{{ asset('storage') . '/'. $audio->upload->file_path }}" type="audio/ogg">
-                            <source src="{{ asset('storage') . '/'. $audio->upload->file_path }}" type="audio/mpeg">
+                            <source src="{{ asset('storage/composition') . '/'. $audio->composed_audio_path }}" type="audio/ogg">
+                            <source src="{{ asset('storage/composition') . '/'. $audio->composed_audio_path }}" type="audio/mpeg">
                             Your browser does not support the audio element.
                         </audio>
                     </td>

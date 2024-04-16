@@ -29,7 +29,9 @@ Route::group(['middleware' => 'auth'], function () {
     
     Route::get('/composition/create', [App\Http\Controllers\CompositionController::class, 'create'])->name('composition.create');
     
-    Route::post('/composition/save', [App\Http\Controllers\CompositionController::class, 'store'])->name('composition.save');    
+    Route::post('/composition/save', [App\Http\Controllers\CompositionController::class, 'store'])->name('composition.save'); 
+
+    Route::get('/composition/index', [App\Http\Controllers\CompositionController::class, 'index'])->name('composition.index');    
 
 });
 

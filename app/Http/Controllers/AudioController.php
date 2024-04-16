@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Audio;
 use App\Models\Upload;
 use Validator;
+use File;
 
 class AudioController extends Controller
 {
@@ -33,9 +34,7 @@ class AudioController extends Controller
             $dataValidation = Validator::make($request->all(), [
                 'zoodiac_sign' => 'required|string',
                 'category' => 'required|string',
-                // 'file' => 'required|mimetype:wav|mp3|mpeg'
-            ],[
-                // 'file.required' => 'File is required and of type wav, mp3'
+                'file' => 'mimes:wav'
             ]);
 
             if($dataValidation->fails()){

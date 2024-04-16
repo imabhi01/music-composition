@@ -4,9 +4,19 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12">
-            @if (session('status'))
+            @if (session('success'))
                 <div class="alert alert-success" role="alert">
-                    {{ session('status') }}
+                    {{ session('success') }}
+                </div>
+            @endif
+
+            @if (count($errors))    
+                <div class="alert alert-danger" role="alert">
+                    <ul>
+                        @foreach($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
                 </div>
             @endif
 
@@ -26,7 +36,7 @@
                             <div class="card-body">
                                 <div class="form-group">
                                     <label for="signs">Signs</label>
-                                    <select name="zoodiac_sign_sun" id="sign_sun" class="form-control">
+                                    <select name="zoodiac_sign_sun" id="sign_sun" class="form-control" required>
                                         <option value="" selected>Select Your Zoodiac Sign</option>
                                         @foreach($signs as $key => $sign)
                                             <option value="{{ $sign }}">{{ $sign }}</option>
@@ -43,7 +53,7 @@
                             <div class="card-body">
                                 <div class="form-group">
                                     <label for="signs">Signs</label>
-                                    <select name="zoodiac_sign_moon" id="sign_moon" class="form-control">
+                                    <select name="zoodiac_sign_moon" id="sign_moon" class="form-control" required>
                                         <option value="" selected>Select Your Zoodiac Sign</option>
                                         @foreach($signs as $key => $sign)
                                             <option value="{{ $sign }}">{{ $sign }}</option>
@@ -60,7 +70,7 @@
                             <div class="card-body">
                                 <div class="form-group">
                                     <label for="signs">Signs</label>
-                                    <select name="zoodiac_sign_rising" id="sign_rising" class="form-control">
+                                    <select name="zoodiac_sign_rising" id="sign_rising" class="form-control" required>
                                         <option value="" selected>Select Your Zoodiac Sign</option>
                                         @foreach($signs as $key => $sign)
                                             <option value="{{ $sign }}">{{ $sign }}</option>
