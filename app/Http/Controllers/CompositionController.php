@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Audio;
+use App\Models\User;
 use App\Models\Composition;
 use Illuminate\Http\Request;
 use ProtoneMedia\LaravelFFMpeg\Support\FFMpeg;
@@ -17,8 +18,8 @@ class CompositionController extends Controller
      */
     public function index()
     {
-        $data = Composition::all();
-        return view('composition.index', ['data' => $data]);
+        $user = User::find(auth()->user()->id);
+        return view('composition.index', ['data' => $user->compositions]);
     }
 
     /**
