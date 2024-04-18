@@ -19,7 +19,7 @@ class Audio extends Model
         'active'
     ];
         
-    public $zoodiacSigns = ['Aries', 'Tauraus', 'Gemini', 'Cancer', 'Virgo', 'Scorpio'];
+    public $zoodiacSigns = ['Aries', 'Tauraus', 'Gemini', 'Cancer', 'Leo', 'Virgo', 'Libra', 'Scorpio', 'Sagittarius', 'Capricon', 'Aquarius', 'Pices'];
     
     public $classes = ['Sun', 'Moon', 'Rising'];
 
