@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return redirect('/audio/create');
+    return redirect()->route('composition.create');
 });
 
 Auth::routes();
