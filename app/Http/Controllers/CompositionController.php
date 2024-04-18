@@ -81,7 +81,7 @@ class CompositionController extends Controller
             $composition->save(); 
 
         } catch (\Throwable $th) {
-            return redirect()->back()->withErrors(['msg' => 'Something went Wrong!']);
+            return redirect()->back()->withErrors(['msg' => 'Something went Wrong! Please upload audio files for all the Zoodiac Signs from audio Settings first!']);
         }
 
         return redirect()->back()->with('success', 'Composition saved successfully!');  
@@ -92,6 +92,9 @@ class CompositionController extends Controller
         $audio = Audio::where('zoodiac_sign', $zoodiacSign)
                         ->Where('category', $category)
                         ->first();
+        if(!$audio){
+            return redirect()->back()->withErrors(['msg' => 'Please upload audio files for all the Zoodiac Signs from audio Settings first!']);
+        }
         $filePath = 'public/' . $audio->upload->file_path;
         return $filePath;
     }
