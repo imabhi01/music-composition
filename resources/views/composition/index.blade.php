@@ -13,18 +13,18 @@
             <h1><a href="{{ route('composition.create') }}" class="btn btn-secondary"><strong>Add Composition</strong></a></h1>
 
             <table class="table table-bordered">
-                <th> S.No. </th>
-                <th> Zoodiac Sign Sun</th>
-                <th> Zoodiac Sign Moon</th>
-                <th> Zoodiac Sign Rising</th>
-                <th> Audio </th>
-                <th> Action </th>
+                <th class="text-center"> S.No. </th>
+                <th class="text-center"> Zoodiac Sign Sun</th>
+                <th class="text-center"> Zoodiac Sign Moon</th>
+                <th class="text-center"> Zoodiac Sign Rising</th>
+                <th class="text-center"> Audio </th>
+                <th class="text-center"> Action </th>
                 @forelse($data as $key => $audio)
                 <tbody>
-                    <td>{{ $key+1 }}</td>
-                    <td>{{ $audio->zoodiac_sign_sun }}</td>
-                    <td>{{ $audio->zoodiac_sign_moon }}</td>
-                    <td>{{ $audio->zoodiac_sign_rising }}</td>
+                    <td class="text-center">{{ $key+1 }}</td>
+                    <td class="text-center">{{ $audio->zoodiac_sign_sun }}</td>
+                    <td class="text-center">{{ $audio->zoodiac_sign_moon }}</td>
+                    <td class="text-center">{{ $audio->zoodiac_sign_rising }}</td>
                     <td class="text-center">
                         <audio controls>
                             <source src="{{ asset('storage/composition') . '/'. $audio->composed_audio_path }}" type="audio/ogg">
@@ -32,7 +32,7 @@
                             Your browser does not support the audio element.
                         </audio>
                     </td>
-                    <td>
+                    <td class="text-center">
                         <form action="{{ route('composition.destroy', $audio->id) }}" method="post">
                         @csrf
                         @method('DELETE')

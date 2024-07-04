@@ -171,7 +171,12 @@ class CompositionController extends Controller
     public function destroy($id)
     {
         $composition = Composition::find($id);
+        $previousAudioFilePath = $composition->composed_audio_path;
         $composition->delete();
+        if($previousAudioFilePath){
+            unlink(public_path('storage') . '/composition/'. $previousAudioFilePath); // Unlinking the previous audio file : deleting it.
+        }
+
         return redirect()->route('composition.index')->with('success', 'Composition deleted successfully');
     }
 

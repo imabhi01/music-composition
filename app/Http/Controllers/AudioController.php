@@ -50,7 +50,7 @@ class AudioController extends Controller
             $saveAudio->upload_id = $uploadFile->uploadFile($file);
             $saveAudio->save();
             
-            return redirect()->route('audio.index')->with(['success' => 'File Saved!']);  
+            return redirect()->route('audio.index')->with(['success' => 'Audio File Saved!']);  
         }catch(Exception $e){
             return $e;
         }
@@ -67,12 +67,48 @@ class AudioController extends Controller
         ]);
     }
 
-    public function update($id){
-        dd($id);
+    public function update(Request $request, $id){
+        try{
+            $dataValidation = Validator::make($request->all(), [
+                'zoodiac_sign' => 'required|string',
+                'category' => 'required|string',
+                'file' => 'mimes:wav'
+            ]);
+
+            if($dataValidation->fails()){
+                return redirect()->back()->withErrors($dataValidation)->withInput();
+            }
+            
+            $uploadFile = new Upload();
+
+            $saveAudio = Audio::find($id);
+            $previousAudioFilePath = $saveAudio->upload->file_path;
+
+            $file = $request->file('audio_file');
+            $saveAudio->zoodiac_sign = $request->zoodiac_sign;
+            $saveAudio->category = $request->category;
+            $saveAudio->upload_id = $uploadFile->uploadFile($file);
+
+            if($saveAudio->upload_id){
+                unlink(public_path('storage') . '/'. $previousAudioFilePath); // Unlinking the previous audio file : deleting it.
+            }
+
+            $saveAudio->save();
+            
+            return redirect()->route('audio.index')->with(['success' => 'Audio Updated!']);  
+        }catch(Exception $e){
+            return $e;
+        }
     }
 
     public function destroy($id){
         $audio = Audio::find($id);
+        $previousAudioFilePath = $audio->upload->file_path;
+
+        if($previousAudioFilePath){
+            unlink(public_path('storage') . '/'. $previousAudioFilePath); // Unlinking the previous audio file : deleting it.
+        }
+
         $audio->delete();
         return redirect()->route('audio.index')->with('success', 'Audio deleted successfully');
     }
