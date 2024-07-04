@@ -2,6 +2,7 @@
 
 @section('content')
 <div class="container">
+    <h3><strong>Add Composition</strong></h3>
     <div class="row justify-content-center">
         <div class="col-md-12">
             @if (session('success'))

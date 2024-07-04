@@ -24,12 +24,19 @@
                     <td>{{ $audio->zoodiac_sign }}</td>
                     <td>{{ $audio->category }}</td>
                     <td>{{ $audio->upload->file_name }}</td>
-                    <td>
+                    <td class="text-center">
                         <audio controls>
                             <source src="{{ asset('storage') . '/'. $audio->upload->file_path }}" type="audio/ogg">
                             <source src="{{ asset('storage') . '/'. $audio->upload->file_path }}" type="audio/mpeg">
                             Your browser does not support the audio element.
                         </audio>
+                    </td>
+                    <td>
+                        <form action="{{ route('audio.destroy', $audio->id) }}" method="post">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                        </form>
                     </td>
                 </tbody>
                 @empty

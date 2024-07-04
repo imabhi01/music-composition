@@ -26,12 +26,16 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/audio/create', [App\Http\Controllers\AudioController::class, 'create'])->name('audio.create');
 
     Route::post('/audio/save', [App\Http\Controllers\AudioController::class, 'save'])->name('audio.save');
+
+    Route::delete('/audio/{id}', [App\Http\Controllers\AudioController::class, 'destroy'])->name('audio.destroy'); 
     
     Route::get('/composition/create', [App\Http\Controllers\CompositionController::class, 'create'])->name('composition.create');
     
     Route::post('/composition/save', [App\Http\Controllers\CompositionController::class, 'store'])->name('composition.save'); 
 
-    Route::get('/composition/index', [App\Http\Controllers\CompositionController::class, 'index'])->name('composition.index');    
+    Route::get('/composition/index', [App\Http\Controllers\CompositionController::class, 'index'])->name('composition.index'); 
+    
+    Route::delete('/composition/{id}', [App\Http\Controllers\CompositionController::class, 'destroy'])->name('composition.destroy'); 
 
 });
 

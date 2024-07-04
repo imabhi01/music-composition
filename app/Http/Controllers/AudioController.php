@@ -55,4 +55,10 @@ class AudioController extends Controller
             return $e;
         }
     }
+
+    public function destroy($id){
+        $audio = Audio::find($id);
+        $audio->delete();
+        return redirect()->route('audio.index')->with('success', 'Audio deleted successfully');
+    }
 }

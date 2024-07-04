@@ -168,8 +168,11 @@ class CompositionController extends Controller
      * @param  \App\Models\Composition  $composition
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Composition $composition)
+    public function destroy($id)
     {
-        //
+        $composition = Composition::find($id);
+        $composition->delete();
+        return redirect()->route('composition.index')->with('success', 'Composition deleted successfully');
     }
+
 }
