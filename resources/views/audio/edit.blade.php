@@ -3,7 +3,7 @@
 @section('content')
 <div class="container p-4 bg-white shadow-sm">
 
-    <h3><strong>Add Audio</strong></h3>
+    <h3><strong>Edit Audio</strong></h3>
 
     <div class="row justify-content-center">
         <div class="col-md-12">
@@ -18,8 +18,9 @@
                 </div>
             @endif
 
-            <form action="{{ route('audio.save') }}" method="POST" enctype="multipart/form-data" files="true">
+            <form action="{{ route('audio.update', $audio->id) }}" method="POST" enctype="multipart/form-data" files="true">
                 {{ csrf_field() }}
+                @method('PUT')
 
                 @include('audio._form')
                 

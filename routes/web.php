@@ -27,7 +27,11 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::post('/audio/save', [App\Http\Controllers\AudioController::class, 'save'])->name('audio.save');
 
-    Route::delete('/audio/{id}', [App\Http\Controllers\AudioController::class, 'destroy'])->name('audio.destroy'); 
+    Route::get('/audio/{audio}/edit', [App\Http\Controllers\AudioController::class, 'edit'])->name('audio.edit'); 
+
+    Route::put('/audio/{audio}', [App\Http\Controllers\AudioController::class, 'update'])->name('audio.update'); 
+    
+    Route::delete('/audio/{audio}', [App\Http\Controllers\AudioController::class, 'destroy'])->name('audio.destroy'); 
     
     Route::get('/composition/create', [App\Http\Controllers\CompositionController::class, 'create'])->name('composition.create');
     
@@ -35,7 +39,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/composition/index', [App\Http\Controllers\CompositionController::class, 'index'])->name('composition.index'); 
     
-    Route::delete('/composition/{id}', [App\Http\Controllers\CompositionController::class, 'destroy'])->name('composition.destroy'); 
+    Route::delete('/composition/{composition}/destroy', [App\Http\Controllers\CompositionController::class, 'destroy'])->name('composition.destroy'); 
 
 });
 

@@ -56,6 +56,21 @@ class AudioController extends Controller
         }
     }
 
+    public function edit($id){
+        $settings = new Audio();
+        $audio = Audio::find($id);
+
+        return view('audio.edit', [
+            'audio' => $audio,
+            'signs' => $settings->zoodiacSigns,
+            'category' => $settings->classes
+        ]);
+    }
+
+    public function update($id){
+        dd($id);
+    }
+
     public function destroy($id){
         $audio = Audio::find($id);
         $audio->delete();
