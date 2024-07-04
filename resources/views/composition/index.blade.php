@@ -42,7 +42,7 @@
                 </tbody>
                 @empty
                     <tbody>
-                        <td colspan='5' class="text-center"><strong>No Data</strong></td>
+                        <td colspan='6' class="text-center"><strong>No Data</strong></td>
                     </tbody>
                 @endforelse
             </table>
